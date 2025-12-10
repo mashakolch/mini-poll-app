@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мини-опросник - Пройти опрос</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="survey-header">
+            <a href="/" class="back-link">
+                <i class="fas fa-arrow-left"></i> На главную
+            </a>
+            <h1><i class="fas fa-poll"></i> Опрос: Социальные сети</h1>
+            <p class="subtitle">Ответьте на 5 простых вопросов</p>
+        </header>
+
+        <main class="survey-content">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="currentQuestion">1</span> из <span id="totalQuestions">5</span> вопросов
+                </div>
+            </div>
+
+            <form id="surveyForm" class="survey-form">
+                <div class="form-section personal-info" id="personalInfoSection">
+                    <h2><i class="fas fa-user"></i> Ваша информация</h2>
+                    <p class="section-description">Пожалуйста, заполните эти данные перед началом опроса.</p>
+                    
+                    <div class="form-group">
+                        <label for="name">
+                            <i class="fas fa-user-circle"></i> Ваше имя *
+                        </label>
+                        <input type="text" id="name" name="name" required 
+                               placeholder="Введите ваше имя" minlength="2" maxlength="50">
+                        <div class="form-hint">Минимум 2 символа</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i> Email адрес *
+                        </label>
+                        <input type="email" id="email" name="email" required 
+                               placeholder="example@mail.com">
+                        <div class="form-hint">Мы не рассылаем спам</div>
+                    </div>
+                    
+                    <button type="button" class="btn-next" onclick="startSurvey()">
+                        <i class="fas fa-play"></i> Начать опрос
+                    </button>
+                </div>
+
+                <div class="questions-container" id="questionsContainer" style="display: none;"></div>
+
+                <div class="navigation-buttons" id="navigationButtons" style="display: none;">
+                    <button type="button" class="btn-prev" id="prevBtn" onclick="prevQuestion()">
+                        <i class="fas fa-chevron-left"></i> Назад
+                    </button>
+                    
+                    <button type="button" class="btn-next" id="nextBtn" onclick="nextQuestion()">
+                        Далее <i class="fas fa-chevron-right"></i>
+                    </button>
+                    
+                    <button type="submit" class="btn-submit" id="submitBtn" style="display: none;">
+                        <i class="fas fa-paper-plane"></i> Отправить опрос
+                    </button>
+                </div>
+            </form>
+
+            <div class="survey-instructions">
+                <h3><i class="fas fa-lightbulb"></i> Как заполнять опрос:</h3>
+                <ul>
+                    <li>Все поля, отмеченные *, обязательны для заполнения</li>
+                    <li>Вы можете вернуться к предыдущим вопросам с помощью кнопки "Назад"</li>
+                    <li>После отправки вы увидите общую статистику по ответам</li>
+                    <li>Ваши данные используются только для формирования статистики</li>
+                </ul>
+            </div>
+        </main>
+
+        <footer class="survey-footer">
+            <p>Мини-опросник &copy; 2024 | <a href="/results">Посмотреть результаты опроса</a></p>
+        </footer>
+    </div>
+
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-check-circle"></i> Опрос успешно отправлен!</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="successMessage">Спасибо за участие в опросе! Ваши ответы сохранены.</p>
+                <div class="modal-actions">
+                    <a href="/results" class="btn-primary">
+                        <i class="fas fa-chart-bar"></i> Посмотреть результаты
+                    </a>
+                    <a href="/" class="btn-secondary">
+                        <i class="fas fa-home"></i> На главную
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

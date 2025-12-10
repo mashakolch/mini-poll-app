@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мини-опросник - Результаты</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="results-header">
+            <div class="header-top">
+                <a href="/" class="back-link">
+                    <i class="fas fa-arrow-left"></i> На главную
+                </a>
+                <a href="/survey" class="btn-small">
+                    <i class="fas fa-plus"></i> Пройти опрос
+                </a>
+            </div>
+            <h1><i class="fas fa-chart-bar"></i> Результаты опроса</h1>
+            <p class="subtitle">Статистика ответов всех участников</p>
+        </header>
+
+        <main class="results-content">
+    
+            <div class="loading" id="loading">
+                <div class="spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <p>Загружаем статистику...</p>
+            </div>
+
+         
+            <div class="results-container" id="resultsContainer" style="display: none;">
+                <div class="overall-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Всего участников</h3>
+                            <p class="stat-number" id="totalParticipants">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Последний опрос</h3>
+                            <p class="stat-text" id="lastSubmission">-</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Вопросов в опросе</h3>
+                            <p class="stat-number">5</p>
+                        </div>
+                    </div>
+                </div>
+
+               
+                <div class="question-results" id="questionResults">
+                </div>
+
+                
+                <div class="api-info-card">
+                    <h3><i class="fas fa-code"></i> API для разработчиков</h3>
+                    <p>Данные доступны через REST API:</p>
+                    <div class="api-endpoints">
+                        <div class="api-endpoint">
+                            <code>GET /api/survey/questions</code>
+                            <span>Получить вопросы опросника</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <code>GET /api/survey/statistics</code>
+                            <span>Получить статистику ответов</span>
+                        </div>
+                        <div class="api-endpoint">
+                            <code>POST /api/survey/submit</code>
+                            <span>Отправить ответы на опрос</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="error-message" id="errorMessage" style="display: none;">
+                <div class="error-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3>Ошибка загрузки данных</h3>
+                <p id="errorText">Не удалось загрузить статистику. Пожалуйста, попробуйте позже.</p>
+                <button onclick="loadResults()" class="btn-primary">
+                    <i class="fas fa-redo"></i> Попробовать снова
+                </button>
+            </div>
+        </main>
+
+        <footer class="results-footer">
+            <div class="footer-content">
+                <p>Данные обновляются в реальном времени. Все результаты анонимны.</p>
+                <p>Для получения полных данных используйте <a href="/api/survey/statistics">API</a>.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>Мини-опросник &copy; 2024 | Express.js приложение</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

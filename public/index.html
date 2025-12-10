@@ -1,0 +1,82 @@
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опросник: Ваши кофейные привычки</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Опрос о кофейных привычках</h1>
+            <p class="subtitle">Ответьте на 5 простых вопросов о ваших отношениях с кофе</p>
+        </header>
+
+        <main>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('survey')">Пройти опрос</button>
+                <button class="tab-btn" onclick="showTab('results')">Результаты</button>
+                <button class="tab-btn" onclick="showTab('statistics')">Статистика</button>
+            </div>
+
+            
+            <div id="survey-tab" class="tab-content active">
+                <form id="surveyForm">
+                    <div class="form-group">
+                        <label for="name">Ваше имя *</label>
+                        <input type="text" id="name" name="name" required minlength="2" 
+                               placeholder="Введите ваше имя">
+                    </div>
+
+                    <div class="questions-container">
+                       
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="resetForm()">
+                            Начать заново
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            Сохранить результаты
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="results-tab" class="tab-content">
+                <div class="results-header">
+                    <h3>Сохраненные результаты</h3>
+                    <button class="btn-small" onclick="loadResults()">Обновить</button>
+                </div>
+                <div id="resultsList" class="results-list">
+                </div>
+            </div>
+
+            <div id="statistics-tab" class="tab-content">
+                <div class="stats-header">
+                    <h3>Статистика опроса</h3>
+                    <div class="total-participants">
+                        Всего участников: <span id="totalCount">0</span>
+                    </div>
+                </div>
+                <div id="statisticsContainer" class="statistics-container">
+                </div>
+            </div>
+
+            <div id="message" class="message" style="display: none;"></div>
+        </main>
+
+        <footer>
+            <p>Простое Express-приложение с опросом | Всего 5 вопросов</p>
+            <p class="api-info">
+                API доступно по адресу: <code>/api/survey</code>
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
